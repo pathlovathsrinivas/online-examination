@@ -22,48 +22,76 @@
               <textarea matInput name="problem" [(ngModel)]="questions.problem" #option1="ngModel"></textarea>
             </mat-form-field><br>
             <mat-form-field class="options">
-              <input matInput required placeholder="option1" name="option1" [(ngModel)]="questions.option1"
-                #option1="ngModel" required>
-              <!-- <mat-error *ngIf="option1.invalid && (option1.dirty ||option1.touched)">
-                <div *ngIf="option1.errors['required']">
-                  <small>This field is required</small>
-                </div>
-              </mat-error> -->
+              <input matInput  placeholder="option1" name="option1" [(ngModel)]="questions.option1"
+                #option1="ngModel" >
+           
             </mat-form-field> <br>
             <mat-form-field class="options">
               <input matInput placeholder="option2" name="option2" [(ngModel)]="questions.option2" #option2="ngModel"
-                required>
-              <!-- <mat-error *ngIf="option2.invalid && (option2.dirty ||option2.touched)">
-                <div *ngIf="option2.errors['required']">
-                  <small>This field is required</small>
-                </div>
-              </mat-error> -->
+                >
+         
             </mat-form-field><br>
             <mat-form-field class="options">
               <input matInput placeholder="option3" name="option3" [(ngModel)]="questions.option3" #option3="ngModel"
-                required>
-              <!-- <mat-error *ngIf="option1.invalid && (option3.dirty ||option3.touched)">
-                <div *ngIf="option3.errors['required']">
-                  <small>This field is required</small>
-                </div>
-              </mat-error> -->
+                >
+             
             </mat-form-field> <br>
             <mat-form-field class="options">
               <input matInput placeholder="option4" name="option4" [(ngModel)]="questions.option4" #option4="ngModel"
-                required>
-              <!-- <mat-error *ngIf="option4.invalid && (option4.dirty ||option4.touched)">
-                <div *ngIf="option4.errors['required']">
-                  <small>This field is required</small>
-                </div>
-              </mat-error> -->
+                >
+             
             </mat-form-field>
           </mat-card>
           <mat-action-row>
-            <button mat-button color="warn" (click)="clearForm();">Cancel</button>
-            <button mat-button color="primary"  (click)="Submit(accCreation);">Submit</button>
+            <button mat-button color="primary" data-toggle="modal"  data-target="#preview_Modal" *ngIf="!PreviewFlag" (click)="Preview();">Preview</button>
+            <button mat-button color="warn" (click)="clearForm(accCreation);">Cancel</button>
+            <button mat-button color="primary"  (click)="Add(accCreation);">Add</button>
           </mat-action-row>
         </mat-expansion-panel>
       </form>
     </mat-accordion>
   </div>
 </ng-container>
+<app-alert></app-alert>
+<app-confirm></app-confirm>
+<div class="modal fade" id="preview_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <mat-card style="width: 460px;background-color: #73c20e;">
+          <div style="display:flex; flex-direction: row;">
+        <h5 class="modal-title" id="exampleModalLabel">General Knowledge</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="clearForm(Student_Reg_Form);">
+          <span aria-hidden="true">&times;</span>
+        </button></div></mat-card>
+      </div>
+    
+            <mat-card style="width: 460px;margin-left: 16px;">
+            <ng-container
+              *ngFor="let vas of Question_Bucket ;let i= index;">
+              <ng-container >
+                <div >
+                  <ng-container *ngIf="vas.problem">
+                   <span> 
+                    <h6>{{i+1}}.{{vas.problem}}</h6></span>
+                    <mat-radio-group aria-label="Select an option">
+                      <mat-radio-button value="1">{{vas.option1}}</mat-radio-button><br>
+                      <mat-radio-button value="2">{{vas.option2}}</mat-radio-button><br>
+                      <mat-radio-button value="3">{{vas.option3}}</mat-radio-button><br>
+                      <mat-radio-button value="4">{{vas.option4}}</mat-radio-button><br>
+                    </mat-radio-group>
+               
+                  </ng-container>
+                  <hr>
+                </div>
+              </ng-container>
+            </ng-container></mat-card>
+     
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearForm(Student_Reg_Form);">Back</button>
+        <button type="button" class="btn btn-primary"  (click)="Submit();">Submit</button>
+      </div>
+    
+    </div>
+  </div>
+</div>
