@@ -1,0 +1,306 @@
+<div style="display:flex; flex-direction: row;">
+<mat-card class="example-card">
+<mat-card-header>
+
+<mat-card-title>
+    <img src="assets/images/person-male.png" alt="person-male">
+</mat-card-title>
+</mat-card-header>
+<hr style="margin-top: -1%;">
+<div class="main-div"> STUDENT </div>
+
+<mat-card-actions>
+    <button mat-button data-toggle="modal"  data-target="#student_login_Model">LOGIN</button>
+    <button mat-button data-toggle="modal"  data-target="#Student_Register_Modal" >REGISTER</button>
+  </mat-card-actions>
+</mat-card>
+<mat-card class="example-card">
+    <mat-card-header>
+    
+    <mat-card-title>
+        <img src="assets/images/person-male.png" alt="person-male">
+    </mat-card-title>
+    </mat-card-header>
+    <hr style="margin-top: -1%;">
+    <div class="main-div"> TEACHER </div>
+    
+    <mat-card-actions>
+        <button mat-button data-toggle="modal" data-target="#Teacher_login_Model">LOGIN</button>
+        <button mat-button data-toggle="modal" data-target="#Teacher_Register_Modal">REGISTER</button>
+      </mat-card-actions>
+    </mat-card>
+    
+
+</div> 
+
+
+<!--Student Registration Modal -->
+<div class="modal fade" id="Student_Register_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <mat-card style="width: 460px;background-color: #73c20e;">
+          <div style="display:flex; flex-direction: row;">
+        <h5 class="modal-title" id="exampleModalLabel">Student Registration Form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="clearForm(Student_Reg_Form);">
+          <span aria-hidden="true">&times;</span>
+        </button></div></mat-card>
+      </div>
+<form #Student_Reg_Form="ngForm" novalidate>
+              <mat-form-field fxFlex="22">
+                <input matInput required placeholder="Full name" name="FullName" 
+                  [(ngModel)]="studentRegistrationModel.FullName" #FullName="ngModel" 
+                  
+                  required>
+  
+                <mat-error *ngIf="FullName.invalid && (FullName.dirty ||FullName.touched)">
+                  <div *ngIf="FullName.errors['required']">
+                    <small>This field is required</small>
+                  </div>
+                </mat-error>
+  
+              </mat-form-field>
+               <mat-form-field fxFlex="22">
+                <input  matInput placeholder="Father Name" name="FatherName"
+                  [(ngModel)]="studentRegistrationModel.FatherName" #FatherName="ngModel" required>
+                  <mat-error *ngIf="FullName.invalid && (FullName.dirty ||FullName.touched)">
+                    <div *ngIf="FullName.errors['required']">
+                      <small>This field is required</small>
+                    </div>
+                  </mat-error>
+              </mat-form-field>
+  
+              <mat-form-field fxFlex="22">
+                <input matInput placeholder="Mother Name" name="MotherName" [(ngModel)]="studentRegistrationModel.MotherName"
+                  #MotherName="ngModel" required>
+                <mat-error *ngIf="MotherName.invalid && (MotherName.dirty ||MotherName.touched)" style="color: red;">
+                  <div *ngIf="MotherName.errors['required']">
+                    <small> This field is required..</small>
+                  </div>
+                </mat-error>
+              
+              </mat-form-field>
+              <!-- <mat-form-field fxFlex="20">
+                <mat-select placeholder="Standerd" id="Standerd" (valueChange)="changeValue($event)"
+                  name="Standerd" [(ngModel)]="studentRegistrationModel.Standerd" #Standerd="ngModel" 
+                   required>
+                  <mat-option>Select</mat-option>
+                  <mat-option *ngFor="let mod of StanderdLov" [value]="mod">{{mod.id}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field> -->
+              <mat-form-field fxFlex="20">
+        
+              <input matInput placeholder="Standerd" name="Standerd" [(ngModel)]="studentRegistrationModel.Standerd"
+                  #Standerd="ngModel" required>
+                <mat-error *ngIf="Standerd.invalid && (Standerd.dirty ||Standerd.touched)" style="color: red;">
+                  <div *ngIf="Standerd.errors['required']">
+                    <small>This field is required</small>
+                  </div>
+                </mat-error> 
+  
+              </mat-form-field>
+  
+              <mat-form-field fxFlex="20">
+                <input matInput placeholder="Roll No." name="RollNo" [(ngModel)]="studentRegistrationModel.RollNo"
+                  #RollNo="ngModel" required>
+                <mat-error *ngIf="RollNo.invalid && (RollNo.dirty ||RollNo.touched)" style="color: red;">
+                  <div *ngIf="RollNo.errors['required']">
+                    <small>This field is required</small>
+                  </div>
+                </mat-error>
+  
+              </mat-form-field>
+  
+              <mat-form-field fxFlex="20">
+                <input matInput placeholder="Phone no" name="PhoneNo" [(ngModel)]="studentRegistrationModel.PhoneNo"
+                  #PhoneNo="ngModel" required>
+                <mat-error *ngIf="PhoneNo.invalid && (PhoneNo.dirty ||PhoneNo.touched)" style="color: red;">
+                  <div *ngIf="PhoneNo.errors['required']">
+                    <small>This field is required</small>
+                  </div>
+                </mat-error>
+  
+              </mat-form-field>
+              <mat-form-field fxFlex="22">
+                <input  matInput placeholder="SchoolName" name="SchoolName"
+                  [(ngModel)]="studentRegistrationModel.SchoolName" #SchoolName="ngModel" required>
+                  <mat-error *ngIf="SchoolName.invalid && (SchoolName.dirty ||SchoolName.touched)">
+                    <div *ngIf="SchoolName.errors['required']">
+                      <small>This field is required</small>
+                    </div>
+                  </mat-error>
+              </mat-form-field> 
+              <mat-form-field fxFlex="22">
+                <input  matInput placeholder="Password" name="Password"
+                  [(ngModel)]="studentRegistrationModel.Password" #Password="ngModel" required>
+                  <mat-error *ngIf="Password.invalid && (Password.dirty ||Password.touched)">
+                    <div *ngIf="Password.errors['required']">
+                      <small>This field is required</small>
+                    </div>
+                  </mat-error>
+              </mat-form-field>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearForm(Student_Reg_Form);">Cancel</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="StudentRegistration();">Register</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+ <!-- Student Login Form Model -->
+<div class="modal fade" id="student_login_Model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <mat-card style="width: 460px;background-color: #73c20e;">
+          <div style="display:flex; flex-direction: row;">
+         <h5 class="modal-title" id="exampleModalLabel">Student Login Form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="clearForm(Student_Login_Form);">
+          <span aria-hidden="true">&times;</span>
+        </button></div></mat-card>
+      </div>
+      <form #Student_Login_Form="ngForm" novalidate>
+              <mat-form-field fxFlex="22">
+                <input matInput required placeholder="Roll No" name="RollNo" 
+                  [(ngModel)]="Student_Login.RollNo" #RollNo="ngModel" 
+                  required>
+                <mat-error *ngIf="RollNo.invalid && (RollNo.dirty ||RollNo.touched)">
+                  <div *ngIf="RollNo.errors['required']">
+                    <small>This field is required</small>
+                  </div>
+                </mat-error>
+              </mat-form-field>
+               <mat-form-field fxFlex="22">
+                <input  matInput placeholder="Password" name="Password"
+                  [(ngModel)]="Student_Login.Password" #Password="ngModel" required>
+                  <mat-error *ngIf="Password.invalid && (Password.dirty ||Password.touched)">
+                    <div *ngIf="Password.errors['required']">
+                      <small>This field is required</small>
+                    </div>
+                  </mat-error>
+              </mat-form-field>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearForm(Student_Login_Form);">Cancel</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="StudentLogin();">Login</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+<!-- Teacher Registration -->
+
+<div class="modal fade" id="Teacher_Register_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <mat-card style="width: 460px;background-color: #73c20e;">
+          <div style="display:flex; flex-direction: row;">
+        <h5 class="modal-title" id="exampleModalLabel">Teacher Registration Form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="clearForm(Teacher_Reg_Form);">
+          <span aria-hidden="true">&times;</span>
+        </button></div></mat-card>
+      </div>
+<form #Teacher_Reg_Form="ngForm" novalidate>
+              <mat-form-field fxFlex="22">
+                <input matInput required placeholder="Full name" name="FullName" 
+                  [(ngModel)]="TeacherRegistrationModel.FullName" #FullName="ngModel" 
+                  
+                  required>
+  
+                <mat-error *ngIf="FullName.invalid && (FullName.dirty ||FullName.touched)">
+                  <div *ngIf="FullName.errors['required']">
+                    <small>This field is required</small>
+                  </div>
+                </mat-error>
+
+              <input matInput placeholder="Standerd" name="Standerd" [(ngModel)]="TeacherRegistrationModel.Standerd"
+                  #Standerd="ngModel" required>
+                <mat-error *ngIf="Standerd.invalid && (Standerd.dirty ||Standerd.touched)" style="color: red;">
+                  <div *ngIf="Standerd.errors['required']">
+                    <small>This field is required</small>
+                  </div>
+                </mat-error> 
+  
+              </mat-form-field>
+
+  
+  
+              <mat-form-field fxFlex="20">
+                <input matInput placeholder="Phone no" name="PhoneNo" [(ngModel)]="TeacherRegistrationModel.PhoneNo"
+                  #PhoneNo="ngModel" required>
+                <mat-error *ngIf="PhoneNo.invalid && (PhoneNo.dirty ||PhoneNo.touched)" style="color: red;">
+                  <div *ngIf="PhoneNo.errors['required']">
+                    <small>This field is required</small>
+                  </div>
+                </mat-error>
+  
+              </mat-form-field>
+              <mat-form-field fxFlex="22">
+                <input  matInput placeholder="SchoolName" name="SchoolName"
+                  [(ngModel)]="TeacherRegistrationModel.SchoolName" #SchoolName="ngModel" required>
+                  <mat-error *ngIf="SchoolName.invalid && (SchoolName.dirty ||SchoolName.touched)">
+                    <div *ngIf="SchoolName.errors['required']">
+                      <small>This field is required</small>
+                    </div>
+                  </mat-error>
+              </mat-form-field> 
+              <mat-form-field fxFlex="22">
+                <input  matInput placeholder="Password" name="Password"
+                  [(ngModel)]="TeacherRegistrationModel.Password" #Password="ngModel" required>
+                  <mat-error *ngIf="Password.invalid && (Password.dirty ||Password.touched)">
+                    <div *ngIf="Password.errors['required']">
+                      <small>This field is required</small>
+                    </div>
+                  </mat-error>
+              </mat-form-field>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearForm(Teacher_Reg_Form);">Cancel</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="TeacherRegistration();">Register</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+ <!-- Student Login Form Model -->
+ <div class="modal fade" id="Teacher_login_Model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <mat-card style="width: 460px;background-color: #73c20e;">
+          <div style="display:flex; flex-direction: row;">
+         <h5 class="modal-title" id="exampleModalLabel">Teacher Login Form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="clearForm(Student_Login_Form);">
+          <span aria-hidden="true">&times;</span>
+        </button></div></mat-card>
+      </div>
+      <form #Student_Login_Form="ngForm" novalidate>
+              <mat-form-field fxFlex="22">
+                <input matInput required placeholder="FullName" name="FullName" 
+                  [(ngModel)]="Teacher_Login.FullName" #FullName="ngModel" 
+                  required>
+                <mat-error *ngIf="FullName.invalid && (FullName.dirty ||FullName.touched)">
+                  <div *ngIf="FullName.errors['required']">
+                    <small>This field is required</small>
+                  </div>
+                </mat-error>
+              </mat-form-field>
+               <mat-form-field fxFlex="22">
+                <input  matInput placeholder="Password" name="Password"
+                  [(ngModel)]="Teacher_Login.Password" #Password="ngModel" required>
+                  <mat-error *ngIf="Password.invalid && (Password.dirty ||Password.touched)">
+                    <div *ngIf="Password.errors['required']">
+                      <small>This field is required</small>
+                    </div>
+                  </mat-error>
+              </mat-form-field>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearForm(Student_Login_Form);">Cancel</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="TeacherLogin();">Login</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>

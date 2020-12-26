@@ -1,0 +1,25 @@
+.example-card {
+    /* margin: 0 auto; */
+    margin-top: 10%;
+    margin-left: 14%;
+    width: 16%;
+    height: 40%;
+   
+    
+  }
+  .userbutton{
+    margin-right: 12px;
+  }
+  .main-div{
+    margin-left: 30%; 
+    color: #73c20e;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 18px;
+    font-weight: 500;
+ 
+  }
+  .mat-form-field{
+  
+    width: 390px;
+    margin-left: 50px;
+  }

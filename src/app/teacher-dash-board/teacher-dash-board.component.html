@@ -1,0 +1,69 @@
+<ng-container>
+  <br>
+  <div class="subject">SELECT SUBJECT</div><br>
+  <div class="row">
+    <mat-accordion class="example-headers-align">
+      <form #accCreation="ngForm"   novalidate>
+        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+          <mat-expansion-panel-header [collapsedHeight]="'60px'" [expandedHeight]="'60px'" class="custheader">
+            <mat-panel-title>
+              General Knowledge
+            </mat-panel-title>
+            <mat-panel-description>
+              General knowledge is information that has been accumulated over time through various mediums.
+            
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <br>
+          <div style="color: blue;">ADD QUESTIONS</div><br>
+          <mat-card>
+            <mat-form-field style="width: 800px;" appearance="fill">
+              <mat-label>Enter question</mat-label>
+              <textarea matInput name="problem" [(ngModel)]="questions.problem" #option1="ngModel"></textarea>
+            </mat-form-field><br>
+            <mat-form-field class="options">
+              <input matInput required placeholder="option1" name="option1" [(ngModel)]="questions.option1"
+                #option1="ngModel" required>
+              <!-- <mat-error *ngIf="option1.invalid && (option1.dirty ||option1.touched)">
+                <div *ngIf="option1.errors['required']">
+                  <small>This field is required</small>
+                </div>
+              </mat-error> -->
+            </mat-form-field> <br>
+            <mat-form-field class="options">
+              <input matInput placeholder="option2" name="option2" [(ngModel)]="questions.option2" #option2="ngModel"
+                required>
+              <!-- <mat-error *ngIf="option2.invalid && (option2.dirty ||option2.touched)">
+                <div *ngIf="option2.errors['required']">
+                  <small>This field is required</small>
+                </div>
+              </mat-error> -->
+            </mat-form-field><br>
+            <mat-form-field class="options">
+              <input matInput placeholder="option3" name="option3" [(ngModel)]="questions.option3" #option3="ngModel"
+                required>
+              <!-- <mat-error *ngIf="option1.invalid && (option3.dirty ||option3.touched)">
+                <div *ngIf="option3.errors['required']">
+                  <small>This field is required</small>
+                </div>
+              </mat-error> -->
+            </mat-form-field> <br>
+            <mat-form-field class="options">
+              <input matInput placeholder="option4" name="option4" [(ngModel)]="questions.option4" #option4="ngModel"
+                required>
+              <!-- <mat-error *ngIf="option4.invalid && (option4.dirty ||option4.touched)">
+                <div *ngIf="option4.errors['required']">
+                  <small>This field is required</small>
+                </div>
+              </mat-error> -->
+            </mat-form-field>
+          </mat-card>
+          <mat-action-row>
+            <button mat-button color="warn" (click)="clearForm();">Cancel</button>
+            <button mat-button color="primary"  (click)="Submit(accCreation);">Submit</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </form>
+    </mat-accordion>
+  </div>
+</ng-container>
