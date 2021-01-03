@@ -52,8 +52,7 @@
     </mat-accordion>
   </div>
 </ng-container>
-<app-alert></app-alert>
-<app-confirm></app-confirm>
+
 <div class="modal fade" id="preview_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -61,10 +60,14 @@
         <mat-card style="width: 460px;background-color: #73c20e;">
           <div style="display:flex; flex-direction: row;">
         <h5 class="modal-title" id="exampleModalLabel">General Knowledge</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="clearForm(Student_Reg_Form);">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="clearForm();">
           <span aria-hidden="true">&times;</span>
         </button></div></mat-card>
       </div>
+      <ul>
+        <li style="color:DodgerBlue;font-size: 15px;">Please select the right answers before Clicking on submit</li>
+     
+      </ul>
     
             <mat-card style="width: 460px;margin-left: 16px;">
             <ng-container
@@ -74,7 +77,7 @@
                   <ng-container *ngIf="vas.problem">
                    <span> 
                     <h6>{{i+1}}.{{vas.problem}}</h6></span>
-                    <mat-radio-group aria-label="Select an option">
+                    <mat-radio-group [(ngModel)]="vas.answer" aria-label="Select an option">
                       <mat-radio-button value="1">{{vas.option1}}</mat-radio-button><br>
                       <mat-radio-button value="2">{{vas.option2}}</mat-radio-button><br>
                       <mat-radio-button value="3">{{vas.option3}}</mat-radio-button><br>
@@ -88,10 +91,12 @@
             </ng-container></mat-card>
      
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearForm(Student_Reg_Form);">Back</button>
-        <button type="button" class="btn btn-primary"  (click)="Submit();">Submit</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearForm();">Back</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="Submit();">Submit</button>
       </div>
     
     </div>
   </div>
 </div>
+<app-alert></app-alert>
+<app-confirm></app-confirm>

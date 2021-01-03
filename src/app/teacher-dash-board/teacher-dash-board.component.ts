@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertService } from '../Shared_Services/alert.service';
 import { ConfirmService } from '../Shared_Services/confirm.service';
-import { questions } from '../user-registration/registrationModel'
+import { questions } from '../user-registration/registrationModel';
+import * as bootstrap from "bootstrap";
+// import * as $ from "jquery";
+declare var $ :any;
 
 @Component({
   selector: 'app-teacher-dash-board',
@@ -11,26 +14,32 @@ import { questions } from '../user-registration/registrationModel'
 export class TeacherDashBoardComponent implements OnInit {
    step:number = 1;
    PreviewFlag:boolean=true;
-   Question_Bucket:any=[];
+   Question_Bucket:any[]=[];
   constructor(private confirmService:ConfirmService,
               private alertService:AlertService ) { }
-  questions:questions
+  questions:questions;
   ngOnInit() {
     this.questions=new questions;
   }
   Add(form:any){
     let that = this;
-    const request_input=form.form.value
+    const request_input=form.form.value;
     if(request_input.problem&&request_input.option1&&request_input.option2&&request_input.option3&&request_input.option4){
-       
+       const obj={
+        problem:request_input.problem,
+        option1:request_input.option1,
+        option2:request_input.option2,
+        option3:request_input.option3,
+        option4:request_input.option4,
+        answer:'null'
+       }
       this.confirmService.confirm('Are you sure?',  function () {
-        that.dummy(request_input);
-        console.log('request_input',request_input)
+        that.dummy(obj);
+        console.log('request_input',request_input);
         form.reset();
        }, function () {
     });
   
-
 }
 else{
   
@@ -47,6 +56,7 @@ else{
     this.step = index;
   }
   dummy(x){
+    
     this.Question_Bucket.push(x);
     this.PreviewFlag=false;
     
@@ -55,10 +65,21 @@ else{
 
   }
   Submit(){
-    this.confirmService.confirm('Are you sure?',  function () {
+    console.log('submittedans',this.Question_Bucket);
+    const proceedFlag=this.Question_Bucket.filter((iteam:any)=>iteam.answer==='null')
+    console.log('proceedFlag',proceedFlag)
+    if(proceedFlag.length===0){
+      // $("#preview_Modal").modal("hide");
+      ($('#preview_Modal') as any).modal('hide');
+    }
+    else{
+      alert("Please select answers for all the questions");
+    }
+    // alert("Hello\nHow are you?");
+  //   this.confirmService.confirm('Are you sure?',  function () {
      
-     }, function () {
-  });
+  //    }, function () {
+  // });
 
   }
 }
