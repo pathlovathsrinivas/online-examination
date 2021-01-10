@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import { from } from 'rxjs';
 import { FormControl } from '@angular/forms';
@@ -13,7 +14,8 @@ declare var $: any;
 })
 export class UserRegistrationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute,
+    private router: Router,) { }
   
   studentRegistrationModel:StudentRegistrationModel;
   Student_Login:StudentLogin;
@@ -37,12 +39,13 @@ export class UserRegistrationComponent implements OnInit {
     form.reset();
   }
   StudentLogin(){
+    
 console.log('s_login',this.Student_Login);
   }
   TeacherRegistration(){
 
   }
   TeacherLogin(){
-    
+    this.router.navigate(['/TeacherDashBoard']);
   }
 }
